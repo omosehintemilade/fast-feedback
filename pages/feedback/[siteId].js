@@ -30,7 +30,7 @@ const SiteFeedback = () => {
     )
   }
 
-  console.log(data.feedback)
+  // console.log(data.feedback)
 
   return (
     <DashboardShell>

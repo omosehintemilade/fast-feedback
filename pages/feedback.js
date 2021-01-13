@@ -16,7 +16,7 @@ const MyFeedback = () => {
     auth.user ? ["/api/feedback", auth.user.token] : null,
     fetcher
   )
-  console.log(data)
+  // console.log(data)
 
   if (!data) {
     return (

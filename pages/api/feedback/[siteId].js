@@ -5,7 +5,7 @@ export default async (req, res) => {
 
   const feedback = await getAllFeedback(siteId)
   const site = await getSite(siteId)
-  console.log(site)
+  // console.log(site)
 
   res.status(200).json({ feedback, site })
 }
