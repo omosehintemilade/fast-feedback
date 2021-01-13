@@ -2,7 +2,6 @@ import React from "react"
 import { Box, Code } from "@chakra-ui/react"
 import { Switch, Table, Tr, Th, Td, IconButton } from "@chakra-ui/react"
 
-import DeleteFeedbackButton from "./DeleteFeedbackButton"
 import FeedbackRow from "./FeedbackRow"
 
 const FeedbackTable = ({ feedback }) => {
@@ -20,7 +19,7 @@ const FeedbackTable = ({ feedback }) => {
         </thead>
         <tbody>
           {feedback.map(feedback => {
-            return <FeedbackRow {...feedback} />
+            return <FeedbackRow key={feedback.id} {...feedback} />
           })}
         </tbody>
       </Table>

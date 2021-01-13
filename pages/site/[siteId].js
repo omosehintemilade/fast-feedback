@@ -38,7 +38,7 @@ export async function getStaticPaths() {
   }
 }
 
-function SiteFeedback({ initialFeedback }) {
+const SiteFeedback = ({ initialFeedback }) => {
   const auth = useAuth()
   const router = useRouter()
   const input = useRef(null)
@@ -78,7 +78,7 @@ function SiteFeedback({ initialFeedback }) {
             </Button>
           </FormControl>
         </Box>
-
+        {console.log(allFeedback)}
         {allFeedback.map(feedback => (
           <Feedback key={feedback.id} {...feedback} />
         ))}

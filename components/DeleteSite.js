@@ -24,7 +24,7 @@ const DeleteSite = ({ id }) => {
 
   const onDelete = () => {
     deleteSite(id)
-    // console.log(id)
+
     mutate(
       ["/api/sites", auth?.user?.token],
       async data => {
