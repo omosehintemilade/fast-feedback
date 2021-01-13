@@ -12,19 +12,19 @@ import DashboardShell from "@/components/DashboardShell"
 export async function getStaticProps(context) {
   const siteId = context.params.siteId
   const feedback = await getAllFeedback(siteId)
-  // console.log(feedback)
+
   return {
     props: {
       initialFeedback: feedback
     },
-    // unstable_
+
     revalidate: 1
   }
 }
 
 export async function getStaticPaths() {
   const sites = await getAllSites()
-  // console.log(sites)
+
   const paths = sites.map(site => {
     return {
       params: {
@@ -78,6 +78,7 @@ function SiteFeedback({ initialFeedback }) {
             </Button>
           </FormControl>
         </Box>
+
         {allFeedback.map(feedback => (
           <Feedback key={feedback.id} {...feedback} />
         ))}
