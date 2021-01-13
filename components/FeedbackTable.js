@@ -1,6 +1,6 @@
 import React from "react"
-import { Box, Code } from "@chakra-ui/react"
-import { Switch, Table, Tr, Th, Td, IconButton } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
+import { Table, Tr, Th } from "@chakra-ui/react"
 
 import FeedbackRow from "./FeedbackRow"
 
