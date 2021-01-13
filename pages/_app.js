@@ -4,6 +4,9 @@ import { Global, css } from "@emotion/react"
 import { CSSReset } from "@chakra-ui/react"
 import { ThemeProvider } from "@emotion/react"
 
+import { DefaultSeo } from "next-seo"
+import SEO from "../next.seo.config"
+
 const GlobalStyle = ({ children }) => {
   return (
     <>
@@ -34,6 +37,7 @@ const App = ({ Component, pageProps }) => {
     <ThemeProvider theme={customTheme}>
       <AuthProvider>
         <GlobalStyle />
+        <DefaultSeo {...SEO} />
         <Component {...pageProps} />
       </AuthProvider>
     </ThemeProvider>

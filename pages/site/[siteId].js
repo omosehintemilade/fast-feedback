@@ -7,6 +7,7 @@ import Feedback from "@/components/Feedback"
 import { useAuth } from "@/lib/auth"
 import { getAllFeedback, getAllSites } from "@/lib/db-admin"
 import { createFeedback } from "@/lib/db"
+import DashboardShell from "@/components/DashboardShell"
 
 export async function getStaticProps(context) {
   const siteId = context.params.siteId
@@ -16,12 +17,14 @@ export async function getStaticProps(context) {
     props: {
       initialFeedback: feedback
     },
-    unstable_revalidate: 1
+    // unstable_
+    revalidate: 1
   }
 }
 
 export async function getStaticPaths() {
   const sites = await getAllSites()
+  // console.log(sites)
   const paths = sites.map(site => {
     return {
       params: {
@@ -31,7 +34,7 @@ export async function getStaticPaths() {
   })
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 
@@ -58,20 +61,28 @@ function SiteFeedback({ initialFeedback }) {
   }
 
   return (
-    <Box display="flex" flexDirection="column" width="full" maxW="700px" margin="0 auto">
-      <Box as="form" onSubmit={onSubmit}>
-        <FormControl id="comment" my={4}>
-          <FormLabel>Comment </FormLabel>
-          <Input type="comment" ref={input} />
-          <Button fontWeight="medium" type="submit" mt={2}>
-            Add Comment
-          </Button>
-        </FormControl>
+    <DashboardShell>
+      <Box
+        display="flex"
+        flexDirection="column"
+        width="full"
+        maxW="700px"
+        margin="0 auto"
+      >
+        <Box as="form" onSubmit={onSubmit}>
+          <FormControl id="comment" my={4}>
+            <FormLabel>Comment </FormLabel>
+            <Input type="comment" ref={input} />
+            <Button fontWeight="medium" type="submit" mt={2}>
+              Add Comment
+            </Button>
+          </FormControl>
+        </Box>
+        {allFeedback.map(feedback => (
+          <Feedback key={feedback.id} {...feedback} />
+        ))}
       </Box>
-      {allFeedback.map(feedback => (
-        <Feedback key={feedback.id} {...feedback} />
-      ))}
-    </Box>
+    </DashboardShell>
   )
 }
 

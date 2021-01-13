@@ -12,7 +12,7 @@ import SiteTableHeader from "@/components/SiteTableHeader"
 
 const Dashboard = () => {
   const { user } = useAuth()
-  // console.log(user)
+
   const { data } = useSWR(user ? ["/api/sites", user.token] : null, fetcher)
 
   if (!data) {
@@ -23,7 +23,7 @@ const Dashboard = () => {
       </DashboardShell>
     )
   }
-  // console.log(data.sites)
+
   return (
     <DashboardShell>
       <SiteTableHeader />

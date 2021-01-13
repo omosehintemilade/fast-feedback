@@ -15,7 +15,7 @@ import { mutate } from "swr"
 import { deleteFeedback } from "@/lib/db"
 import { useAuth } from "@/lib/auth"
 
-const RemoveButton = ({ feedbackId }) => {
+const DeleteFeedbackButton = ({ feedbackId }) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const cancelRef = React.useRef()
 
@@ -23,7 +23,6 @@ const RemoveButton = ({ feedbackId }) => {
   const onClose = () => setIsOpen(false)
 
   const onDelete = () => {
-    // console.log(feedbackId)
     deleteFeedback(feedbackId)
     mutate(
       ["/api/feedback", auth?.user?.token],
@@ -74,4 +73,4 @@ const RemoveButton = ({ feedbackId }) => {
     </>
   )
 }
-export default RemoveButton
+export default DeleteFeedbackButton

@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Flex, Heading, Button, Text, Code } from "@chakra-ui/react"
+import { Flex, Heading, Button, Text, Code, Link } from "@chakra-ui/react"
 
 // components
 import { useAuth } from "@/lib/auth"
@@ -9,18 +9,17 @@ const Home = () => {
   const auth = useAuth()
   // console.log(auth)
   return (
-    <div maxW="400px" margin="0 auto">
+    <div maxwidth="400px" margin="0 auto">
       <Head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
           if(document.cookie && document.cookie.includes('fast-feedback-auth')){
-            window.location.href = "/dashboard"
+            window.location.href = "/sites"
           }
         `
           }}
         />
-        <title>Fast Feedback</title>
       </Head>
       <Flex
         as="main"
@@ -30,18 +29,22 @@ const Home = () => {
         height="100vh"
       >
         <Logo boxSize="32px" />
-        <Text p={5}>
-          {
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo voluptate earum beatae harum! Molestiae est dolores cum rerum ducimus rem, odio minima natus ratione tempora accusamus magni maiores nulla nisi?          "
-          }
+        <Text mb={4} fontSize="lg" py={4}>
+          <Text as="span" fontWeight="bold" display="inline">
+            Fast Feedback
+          </Text>
+          {" was built as part of "}
+          <Link
+            href="https://react2025.com"
+            isExternal
+            textDecoration="underline"
+          >
+            React 2025
+          </Link>
+          {`. It's the easiest way to add comments or reviews to your static site. Try it out by leaving a comment below. After the comment is approved, it will display below.`}
         </Text>
         {auth.user ? (
-          <Button
-            display="grid"
-            place-content="center"
-            as="a"
-            href="/dashboard"
-          >
+          <Button display="grid" place-content="center" as="a" href="/sites">
             View Dashboard
           </Button>
         ) : (

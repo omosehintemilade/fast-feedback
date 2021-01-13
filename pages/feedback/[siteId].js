@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { useRouter } from "next/router"
 
 // components
 import { useAuth } from "@/lib/auth"
@@ -10,12 +11,14 @@ import fetcher from "@/utils/fetcher"
 import FeedbackTable from "@/components/FeedbackTable"
 import FeedbackTableHeader from "@/components/FeedbackTableHeader"
 
-const MyFeedback = () => {
+const SiteFeedback = () => {
   const auth = useAuth()
+  const { query } = useRouter()
   const { data } = useSWR(
-    auth.user ? ["/api/feedback", auth.user.token] : null,
+    auth.user ? [`/api/feedback/${query.siteId}`, auth.user.token] : null,
     fetcher
   )
+
   console.log(data)
 
   if (!data) {
@@ -27,9 +30,11 @@ const MyFeedback = () => {
     )
   }
 
+  console.log(data.feedback)
+
   return (
     <DashboardShell>
-      <FeedbackTableHeader />
+      <FeedbackTableHeader siteName={data.site.name} />
       {data?.feedback ? (
         <FeedbackTable feedback={data.feedback} />
       ) : (
@@ -38,4 +43,4 @@ const MyFeedback = () => {
     </DashboardShell>
   )
 }
-export default MyFeedback
+export default SiteFeedback
